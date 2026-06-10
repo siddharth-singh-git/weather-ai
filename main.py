@@ -9,8 +9,11 @@ from langchain.tools import tool
 
 from langchain.agents import create_agent
 
-from src.prompt import *
 
+from src.prompt import system_prompt
+
+
+''' # uncomment this prompt if modular system prompt doesn't work
 system_prompt = """
     You are a helpful AI weather Agent
     Use the tool if required
@@ -24,6 +27,7 @@ system_prompt = """
     - If you don't know say I don't know
 
 """
+'''
 
 
 #Documenation Link - https://open-meteo.com/
@@ -62,7 +66,7 @@ os.environ["GOOGLE_API_KEY"] = os.getenv("GEMINI_API_KEY")
 
 def main():
     agent = create_agent(
-        model="google_genai:gemini-3-flash-preview",
+        model="google_genai:gemini-2.5-flash",
         tools=[get_weather],
         system_prompt= system_prompt
     )
